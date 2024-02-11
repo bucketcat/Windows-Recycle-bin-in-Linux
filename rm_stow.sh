@@ -41,45 +41,45 @@ while true; do
 			shift
 			;;
 		-e|--empty)
-		echo "Empty option selected."
-		case "$2" in
-			"")
-			echo "No argument provided for --empty."
-			rm -r ./TRASH/
+			echo "Empty option selected."
+			case "$2" in
+				"")
+					echo "No argument provided for --empty."
+					rm -r ./TRASH/
+					shift 2
+					;;
+				*)
+					echo "Argument for --empty: $2"
+					#check for internal --dryrun flag
+					if [[ $* == *"--dryrun"* ]] || if [[ $* == *"-dryrun"* ]] || if [[ $* == *"-d"* ]]; then
+						ls -R -a ../TRASH/
+						#list all files that empty would delete
+					fi
+					shift 2
+					;;
+			esac
+			;;
+		-s|--size)
+			echo "Size selected"
+			#do stuff
+			shift
+		;;
+		-r|--recover)
+			echo "Recover option selected of file: $2"
+			ls  $2 ../TRASH/ 2> /dev/null
+			#suppress warning, might want it
+			#error if it doesn't exist
+			#do something (actual recovery)
 			shift 2
 			;;
+		--)
+			shift
+			break
+			;;
 		*)
-			echo "Argument for --empty: $2"
-			#check for internal --dryrun flag
-			if [[ $* == *"--dryrun"* ]] || if [[ $* == *"-dryrun"* ]] || if [[ $* == *"-d"* ]]; then
-					ls -R -a ../TRASH/
-					#list all files that empty would delete
-		  fi
-          shift 2
-          ;;
-		esac
-		;;
-	-s|--size)
-		echo "Size selected"
-		#do stuff
-		shift
-		;;
-	-r|--recover)
-		echo "Recover option selected of file: $2"
-		ls  $2 ../TRASH/ 2> /dev/null
-		#suppress warning, might want it
-		#error if it doesn't exist
-		#do something (actual recovery)
-		shift 2
-		;;
-	    --)
-      shift
-      break
-      ;;
-    *)
-      echo "Internal error!"
-      exit 1
-      ;;				  
+			echo "Internal error!"
+			exit 1
+			;;				  
 	esac
 done
 
