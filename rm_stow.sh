@@ -20,8 +20,9 @@ echo "  rm_stow.sh --recover regrahts.txt"
 
 }
 
-options=$(getopt -l "help,list,empty::,size,recover:, dryrun" -o "hl:e::sr:d" -a -- "$@")
+options=$(getopt -l "help,list,empty::,size,recover:, dryrun" -o "hl:e::sr:" -a -- "$@")
 #getopt :: optional param, : required. Empty specific file, empty all, dryrun.
+eval set -- "$options"
 
 while true; do
 	case "$1" in
@@ -31,7 +32,24 @@ while true; do
 		read -r
 		shift
 		;;
-	  
+		-e|--empty)
+		echo "Empty option selected."
+		case "$2" in
+			"")
+			echo "No argument provided for --empty."
+			#rm -r ./TRASH/
+			shift 2
+			;;
+		*)
+			echo "Argument for --empty: $2"
+			#check for internal --dryrun flag
+			if [[ $* == *"--dryrun"* ]] || if [[ $* == *"-dryrun"* ]] || if [[ $* == *"-d"* ]]; then
+					ls -R -a ../TRASH/
+					#list all files that empty would delete
+		  fi
+          shift 2
+          ;;
+				
 	  
 	  
 	  
@@ -41,3 +59,10 @@ while true; do
 	  
 	esac
 done
+
+
+# Check if --dryrun is present without --empty
+if [ "$dryrun_flag" = true ] && [ "$empty_flag" = false ]; then
+	echo "Error: --dryrun can only be used together with --empty."
+	exit 1
+fi
