@@ -23,6 +23,21 @@ echo "  rm_stow.sh --recover regrahts.txt"
 options=$(getopt -l "help,list,empty::,size,recover:, dryrun" -o "hl:e::sr:d" -a -- "$@")
 #getopt :: optional param, : required. Empty specific file, empty all, dryrun.
 
-while true
-do
-case
+while true; do
+	case "$1" in
+		-h|--help)
+		showUsage()
+		echo "Help option selected. Press any button to proceed."
+		read -r
+		shift
+		;;
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	esac
+done
