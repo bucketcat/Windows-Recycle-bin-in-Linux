@@ -11,11 +11,14 @@ echo "Options:"
 echo "  -h, --help       Show this help message and exit"
 echo "  -l, --list       Equivalent to ls -la of ./TRASH/"
 echo "  -e, --empty      Equivalent to rm -r ./TRASH/*    Warning, will erase contents of Recycle bin."
+echo "  -d, --dryrun     Can only be used together with --empty. Does a dryrun of clean, outputting all files to be erased."
 echo "  -s, --size       Equivalent to du --summarize --human-readable * 	Will list filesize of the contents of ./TRASH/"
 echo "  -r, --recover    Restore files. Similar to Ctrl + z on windows."
 echo
 echo "Example:"
 echo "  rm_stow.sh --recover regrahts.txt"
+echo "Example2:"
+echo "	rm_stow.sh --empty --dryrun"
 
 
 }
@@ -61,8 +64,3 @@ while true; do
 done
 
 
-# Check if --dryrun is present without --empty
-if [ "$dryrun_flag" = true ] && [ "$empty_flag" = false ]; then
-	echo "Error: --dryrun can only be used together with --empty."
-	exit 1
-fi
