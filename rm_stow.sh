@@ -61,7 +61,7 @@ while true; do
 			;;
 		-s|--size)
 			echo "Size selected"
-			#do stuff
+			du --summarize --human-readable /TRASH/
 			shift
 		;;
 		-r|--recover)
