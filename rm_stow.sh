@@ -30,11 +30,16 @@ eval set -- "$options"
 while true; do
 	case "$1" in
 		-h|--help)
-		showUsage()
-		echo "Help option selected. Press any button to proceed."
-		read -r
-		shift
-		;;
+			showUsage()
+			echo "Help option selected. Press any button to proceed."
+			read -r
+			shift
+			;;
+		-l|--list)
+			echo "List option selected."
+			ls -R -a ../TRASH/
+			shift
+			;;
 		-e|--empty)
 		echo "Empty option selected."
 		case "$2" in
@@ -67,15 +72,17 @@ while true; do
 		#do something (actual recovery)
 		shift 2
 		;;
-				
-	  
-	  
-	  
-	  
-	  
-	  
-	  
+	    --)
+      shift
+      break
+      ;;
+    *)
+      echo "Internal error!"
+      exit 1
+      ;;				  
 	esac
 done
+
+
 
 
