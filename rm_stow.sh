@@ -40,7 +40,7 @@ while true; do
 		case "$2" in
 			"")
 			echo "No argument provided for --empty."
-			#rm -r ./TRASH/
+			rm -r ./TRASH/
 			shift 2
 			;;
 		*)
@@ -52,6 +52,21 @@ while true; do
 		  fi
           shift 2
           ;;
+		esac
+		;;
+	-s|--size)
+		echo "Size selected"
+		#do stuff
+		shift
+		;;
+	-r|--recover)
+		echo "Recover option selected of file: $2"
+		ls  $2 ../TRASH/ 2> /dev/null
+		#suppress warning, might want it
+		#error if it doesn't exist
+		#do something (actual recovery)
+		shift 2
+		;;
 				
 	  
 	  
