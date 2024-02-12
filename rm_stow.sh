@@ -1,6 +1,8 @@
 #!/bin/bash
 
-active=false
+
+#To Do: Add single file deletion from ~/TRASH if user combined remove + filename
+
 
 showUsage() {
 
@@ -110,4 +112,10 @@ createTrashFolder(){
 	mkdir ~/.TRASH 2> /dev/null #better than -p imo
 }
 
-#To Do: Add single file deletion from ~/TRASH if user combined remove + filename
+# Print a message if the script is called without any arguments
+if [ $# -eq 0 ]; then
+    echo "No arguments provided. Please see usage below:"
+    showUsage
+    exit 1
+fi
+
