@@ -55,7 +55,7 @@ while true; do
 				*)
 					echo "Argument for --empty: $2"
 					#check for internal --dryrun flag
-					if [[ $* == *"--dryrun"* ]] || if [[ $* == *"-dryrun"* ]] || if [[ $* == *"-d"* ]]; then
+					if [[ $* == *"--dryrun"* ]] || [[ $* == *"-dryrun"* ]] || [[ $* == *"-d"* ]]; then
 						ls -R -a ../.TRASH/
 						#list all files that empty would delete
 					fi
@@ -65,7 +65,7 @@ while true; do
 			;;
 		-s|--size)
 			echo "Size selected"
-			du --summarize --human-readable /.TRASH/
+			du --summarize --human-readable ~/.TRASH/
 			shift
 		;;
 		-r|--recover)
