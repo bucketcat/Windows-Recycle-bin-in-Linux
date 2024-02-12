@@ -25,7 +25,14 @@ showUsage() {
 
 }
 
-
+createTrashFolder(){
+	#system("mkdir ~/TRASH"); This is required for non-bash languages like C/CPP/Java
+    trash_directory="$HOME/.TRASH"
+    mkdir -p "$trash_directory"	trash_directory="~/.TRASH"
+	 
+	
+#2> /dev/null #better than -p imo
+}
 
 
 stowFile(){
@@ -41,14 +48,7 @@ stowFile(){
 		exit 0
 fi
 }
-createTrashFolder(){
-	#system("mkdir ~/TRASH"); This is required for non-bash languages like C/CPP/Java
-    trash_directory="$HOME/.TRASH"
-    mkdir -p "$trash_directory"	trash_directory="~/.TRASH"
-	 
-	
-#2> /dev/null #better than -p imo
-}
+
 
 options=$(getopt -l "help,list,empty::,size,recover:, dryrun" -o "hl:e::sr:" -a -- "$@")
 #getopt :: optional param, : required. Empty specific file, empty all, dryrun.
