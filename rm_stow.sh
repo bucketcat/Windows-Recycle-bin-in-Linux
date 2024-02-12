@@ -7,23 +7,19 @@
 showUsage() {
 
 
-echo "Usage: rm_stow"
-echo
-echo "Options:"
-echo "  -h, --help       Show this help message and exit"
-echo "  -l, --list       Equivalent to ls -la of ./.TRASH/"
-echo "  -e, --empty      Equivalent to rm -r ./.TRASH/*    					Warning, will erase contents of Recycle bin."
-echo "  -d, --dryrun     Can only be used together with --empty. 			Does a dryrun of clean, outputting all files to be erased."
-echo "  -s, --size       Equivalent to du --summarize --human-readable * 	Will list filesize of the contents of ./.TRASH/"
-echo "  -r, --recover    Restore files. Similar to Ctrl + z on windows."
-echo
-echo "Example:"
-echo "  	 rm_stow.sh --recover regrahts.txt"
-echo "Example2:"
-echo "		 rm_stow.sh --empty --dryrun"
-echo "                                                                      To delete a file, ONLY include the name of the file and no other arguments or options."
-echo "Example3:"
-echo "		 rm_stow.sh bye.txt"
+    echo -e "Usage: rm_stow\n"
+    echo "Options:"
+    echo -e "  -h, --help\tShow this help message and exit"
+    echo -e "  -l, --list\tEquivalent to ls -la of ./.TRASH/"
+    echo -e "  -e, --empty\tEquivalent to rm -r ./.TRASH/*\t\t\tWarning, will erase contents of Recycle bin."
+    echo -e "  -d, --dryrun\tCan only be used together with --empty.\tDoes a dryrun of clean, outputting all files to be erased."
+    echo -e "  -s, --size\tEquivalent to du --summarize --human-readable *\tWill list filesize of the contents of ./.TRASH/"
+    echo -e "  -r, --recover\tRestore files. Similar to Ctrl + z on windows.\n"
+    echo "Examples:"
+    echo -e "  rm_stow.sh --recover regrahts.txt"
+    echo -e "  rm_stow.sh --empty --dryrun"
+    echo -e "                    To delete a file, ONLY include the name of the file and no other arguments or options."
+    echo -e "  rm_stow.sh bye.txt"
 
 
 
