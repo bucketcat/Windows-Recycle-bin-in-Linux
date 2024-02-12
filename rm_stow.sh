@@ -83,6 +83,22 @@ while true; do
 	esac
 done
 
-
+stowFile(){
+	if [ "$#" -eq 1 ] && ! [[ "$1" =~ ^- ]]; then
+  # Check if there are no options provided and a single argument is given
+		createTrashFolder()
+  # If only one argument is provided (file), move it to the trash
+		file_to_delete="$1"
+		echo "Moving file to trash: $file_to_delete"
+  # Perform the actual move to trash here (you might need to adjust this)
+		mv "$file_to_delete" ~/.TRASH/
+		echo "File moved to trash successfully."
+		exit 0
+fi
+}
+createTrashFolder(){
+	#system("mkdir ~/TRASH"); This is required for non-bash languages like C/CPP/Java
+	mkdir ~/.TRASH 2> /dev/null #better than -p imo
+}
 
 
