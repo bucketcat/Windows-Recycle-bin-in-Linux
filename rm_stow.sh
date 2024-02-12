@@ -50,7 +50,7 @@ fi
 }
 
 
-options=$(getopt -l "help,list,empty::,size,recover:, dryrun" -o "hl:e::sr:" -a -- "$@")
+options=$(getopt -l "help,list,empty::,size,recover:,dryrun" -o "hl:e::sr:" -a -- "$@")
 #getopt :: optional param, : required. Empty specific file, empty all, dryrun.
 eval set -- "$options"
 
@@ -93,7 +93,7 @@ while true; do
 		;;
 		-r|--recover)
 			echo "Recover option selected of file: $2"
-			ls  $2 ../.TRASH/ 2> /dev/null
+			ls  "$2" ../.TRASH/ 2> /dev/null
 			#suppress warning, might want it
 			#error if it doesn't exist
 			#do something (actual recovery)
