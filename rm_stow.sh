@@ -105,8 +105,16 @@ fi
 }
 createTrashFolder(){
 	#system("mkdir ~/TRASH"); This is required for non-bash languages like C/CPP/Java
+	
+	#Debugging
+	trash_directory="~/.TRASH"
+	file_to_delete="regrahts.txt"
+	#debugging
 	mkdir ~/.TRASH 
+	mv "$file_to_delete" $trash_directory
 	#2> /dev/null #better than -p imo
+	ls -R $trash_directory
+	#Debugging
 }
 
 # Print a message if the script is called without any arguments
