@@ -18,12 +18,12 @@ echo "  -s, --size       Equivalent to du --summarize --human-readable * 	Will l
 echo "  -r, --recover    Restore files. Similar to Ctrl + z on windows."
 echo
 echo "Example:"
-echo "  rm_stow.sh --recover regrahts.txt"
+echo "  	 rm_stow.sh --recover regrahts.txt"
 echo "Example2:"
-echo "	rm_stow.sh --empty --dryrun"
-echo " To delete a file, ONLY include the name of the file and no other arguments or options."
+echo "		 rm_stow.sh --empty --dryrun"
+echo "                                                                      To delete a file, ONLY include the name of the file and no other arguments or options."
 echo "Example3:"
-echo "	rm_stow.sh bye.txt"
+echo "		 rm_stow.sh bye.txt"
 
 
 
