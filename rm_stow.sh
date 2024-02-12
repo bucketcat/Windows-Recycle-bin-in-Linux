@@ -34,7 +34,7 @@ eval set -- "$options"
 while true; do
 	case "$1" in
 		-h|--help)
-			showUsage()
+			showUsage
 			echo "Help option selected. Press any button to proceed."
 			read -r
 			shift
@@ -80,9 +80,14 @@ while true; do
 			shift
 			break
 			;;
-		*)
-			echo "Internal error!"
-			exit 1
+		*)            
+			if [[ ! $1 == -* ]]; then
+                stowFile "$1"
+			else	
+				echo "Error! Unrecognised argument or invalid file!"
+				exit 1
+			fi	
+			break
 			;;				  
 	esac
 done
