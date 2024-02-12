@@ -105,7 +105,8 @@ fi
 }
 createTrashFolder(){
 	#system("mkdir ~/TRASH"); This is required for non-bash languages like C/CPP/Java
-	mkdir ~/.TRASH 2> /dev/null #better than -p imo
+	mkdir ~/.TRASH 
+	#2> /dev/null #better than -p imo
 }
 
 # Print a message if the script is called without any arguments
