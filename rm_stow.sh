@@ -73,7 +73,7 @@ while [[ $# -gt 0 ]]; do
 				"")
 					echo "No argument provided for --empty."
 					rm -r ~/.TRASH/
-					shift 2
+					shift 
 					;;
 				*)
 					echo "Argument for --empty: $2"
@@ -82,7 +82,7 @@ while [[ $# -gt 0 ]]; do
 						ls -R -a ~/.TRASH/
 						#list all files that empty would delete
 					fi
-					shift 2
+					shift 
 					;;
 			esac
 			;;
@@ -97,7 +97,7 @@ while [[ $# -gt 0 ]]; do
 			#suppress warning, might want it
 			#error if it doesn't exist
 			#do something (actual recovery)
-			shift 2
+			shift 
 			;;
 		--)
 			shift
