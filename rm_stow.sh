@@ -25,6 +25,31 @@ showUsage() {
 
 }
 
+
+
+
+stowFile(){
+	if [ "$#" -eq 1 ] && ! [[ "$1" =~ ^- ]]; then
+  # Check if there are no options provided and a single argument is given
+		createTrashFolder
+  # If only one argument is provided (file), move it to the trash
+		file_to_delete="$1"
+		echo "Moving file to trash: $file_to_delete"
+  # Perform the actual move to trash here (you might need to adjust this)
+		mv "$file_to_delete" ~/.TRASH/
+		echo "File moved to trash successfully."
+		exit 0
+fi
+}
+createTrashFolder(){
+	#system("mkdir ~/TRASH"); This is required for non-bash languages like C/CPP/Java
+    trash_directory="$HOME/.TRASH"
+    mkdir -p "$trash_directory"	trash_directory="~/.TRASH"
+	 
+	
+#2> /dev/null #better than -p imo
+}
+
 options=$(getopt -l "help,list,empty::,size,recover:, dryrun" -o "hl:e::sr:" -a -- "$@")
 #getopt :: optional param, : required. Empty specific file, empty all, dryrun.
 eval set -- "$options"
@@ -90,37 +115,12 @@ while true; do
 	esac
 done
 
-stowFile(){
-	if [ "$#" -eq 1 ] && ! [[ "$1" =~ ^- ]]; then
-  # Check if there are no options provided and a single argument is given
-		createTrashFolder
-  # If only one argument is provided (file), move it to the trash
-		file_to_delete="$1"
-		echo "Moving file to trash: $file_to_delete"
-  # Perform the actual move to trash here (you might need to adjust this)
-		mv "$file_to_delete" ~/.TRASH/
-		echo "File moved to trash successfully."
-		exit 0
-fi
-}
-createTrashFolder(){
-	#system("mkdir ~/TRASH"); This is required for non-bash languages like C/CPP/Java
-	
-	#Debugging
-	trash_directory="~/.TRASH"
-	file_to_delete="regrahts.txt"
-	#debugging
-	mkdir ~/.TRASH 
-	mv "$file_to_delete" $trash_directory
-	#2> /dev/null #better than -p imo
-	ls -R $trash_directory
-	#Debugging
-}
+
 
 # Print a message if the script is called without any arguments
-if [ $# -eq 0 ]; then
-    echo "No arguments provided. Please see usage below:"
-    showUsage
-    exit 1
-fi
+#if [ $# -eq 0 ]; then
+ #   echo "No arguments provided. Please see usage below:"
+  #  showUsage
+   # exit 1
+#fi
 
