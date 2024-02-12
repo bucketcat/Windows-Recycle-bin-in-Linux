@@ -10,8 +10,8 @@ echo
 echo "Options:"
 echo "  -h, --help       Show this help message and exit"
 echo "  -l, --list       Equivalent to ls -la of ./.TRASH/"
-echo "  -e, --empty      Equivalent to rm -r ./.TRASH/*    Warning, will erase contents of Recycle bin."
-echo "  -d, --dryrun     Can only be used together with --empty. Does a dryrun of clean, outputting all files to be erased."
+echo "  -e, --empty      Equivalent to rm -r ./.TRASH/*    					Warning, will erase contents of Recycle bin."
+echo "  -d, --dryrun     Can only be used together with --empty. 			Does a dryrun of clean, outputting all files to be erased."
 echo "  -s, --size       Equivalent to du --summarize --human-readable * 	Will list filesize of the contents of ./.TRASH/"
 echo "  -r, --recover    Restore files. Similar to Ctrl + z on windows."
 echo
@@ -95,7 +95,7 @@ done
 stowFile(){
 	if [ "$#" -eq 1 ] && ! [[ "$1" =~ ^- ]]; then
   # Check if there are no options provided and a single argument is given
-		createTrashFolder()
+		createTrashFolder
   # If only one argument is provided (file), move it to the trash
 		file_to_delete="$1"
 		echo "Moving file to trash: $file_to_delete"
