@@ -110,4 +110,4 @@ createTrashFolder(){
 	mkdir ~/.TRASH 2> /dev/null #better than -p imo
 }
 
-
+#To Do: Add single file deletion from ~/TRASH if user combined remove + filename
