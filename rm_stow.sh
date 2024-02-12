@@ -19,6 +19,10 @@ echo "Example:"
 echo "  rm_stow.sh --recover regrahts.txt"
 echo "Example2:"
 echo "	rm_stow.sh --empty --dryrun"
+echo " To delete a file, ONLY include the name of the file and no other arguments or options."
+echo "Example3:"
+echo "	rm_stow.sh bye.txt"
+
 
 
 }
