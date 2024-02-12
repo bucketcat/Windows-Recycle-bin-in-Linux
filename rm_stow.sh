@@ -9,10 +9,10 @@ echo "Usage: rm_stow"
 echo
 echo "Options:"
 echo "  -h, --help       Show this help message and exit"
-echo "  -l, --list       Equivalent to ls -la of ./TRASH/"
-echo "  -e, --empty      Equivalent to rm -r ./TRASH/*    Warning, will erase contents of Recycle bin."
+echo "  -l, --list       Equivalent to ls -la of ./.TRASH/"
+echo "  -e, --empty      Equivalent to rm -r ./.TRASH/*    Warning, will erase contents of Recycle bin."
 echo "  -d, --dryrun     Can only be used together with --empty. Does a dryrun of clean, outputting all files to be erased."
-echo "  -s, --size       Equivalent to du --summarize --human-readable * 	Will list filesize of the contents of ./TRASH/"
+echo "  -s, --size       Equivalent to du --summarize --human-readable * 	Will list filesize of the contents of ./.TRASH/"
 echo "  -r, --recover    Restore files. Similar to Ctrl + z on windows."
 echo
 echo "Example:"
@@ -37,7 +37,7 @@ while true; do
 			;;
 		-l|--list)
 			echo "List option selected."
-			ls -R -a ../TRASH/
+			ls -R -a ../.TRASH/
 			shift
 			;;
 		-e|--empty)
@@ -45,14 +45,14 @@ while true; do
 			case "$2" in
 				"")
 					echo "No argument provided for --empty."
-					rm -r ./TRASH/
+					rm -r ./.TRASH/
 					shift 2
 					;;
 				*)
 					echo "Argument for --empty: $2"
 					#check for internal --dryrun flag
 					if [[ $* == *"--dryrun"* ]] || if [[ $* == *"-dryrun"* ]] || if [[ $* == *"-d"* ]]; then
-						ls -R -a ../TRASH/
+						ls -R -a ../.TRASH/
 						#list all files that empty would delete
 					fi
 					shift 2
@@ -61,12 +61,12 @@ while true; do
 			;;
 		-s|--size)
 			echo "Size selected"
-			du --summarize --human-readable /TRASH/
+			du --summarize --human-readable /.TRASH/
 			shift
 		;;
 		-r|--recover)
 			echo "Recover option selected of file: $2"
-			ls  $2 ../TRASH/ 2> /dev/null
+			ls  $2 ../.TRASH/ 2> /dev/null
 			#suppress warning, might want it
 			#error if it doesn't exist
 			#do something (actual recovery)
