@@ -10,10 +10,10 @@ showUsage() {
     echo -e "Usage: rm_stow\n"
     echo "Options:"
     echo -e "  -h, --help\tShow this help message and exit"
-    echo -e "  -l, --list\tEquivalent to ls -la of ./.TRASH/"
-    echo -e "  -e, --empty\tEquivalent to rm -r ./.TRASH/*\t\t\tWarning, will erase contents of Recycle bin."
+    echo -e "  -l, --list\tEquivalent to ls -la of ~/.TRASH/"
+    echo -e "  -e, --empty\tEquivalent to rm -r ~/.TRASH/*\t\t\tWarning, will erase contents of Recycle bin."
     echo -e "  -d, --dryrun\tCan only be used together with --empty.\tDoes a dryrun of clean, outputting all files to be erased."
-    echo -e "  -s, --size\tEquivalent to du --summarize --human-readable *\tWill list filesize of the contents of ./.TRASH/"
+    echo -e "  -s, --size\tEquivalent to du --summarize --human-readable *\tWill list filesize of the contents of ~/.TRASH/"
     echo -e "  -r, --recover\tRestore files. Similar to Ctrl + z on windows.\n"
     echo "Examples:"
     echo -e "  rm_stow.sh --recover regrahts.txt"
@@ -28,7 +28,7 @@ showUsage() {
 createTrashFolder(){
 	#system("mkdir ~/TRASH"); This is required for non-bash languages like C/CPP/Java
     trash_directory="$HOME/.TRASH"
-    mkdir -p "$trash_directory"	trash_directory="~/.TRASH"
+    mkdir -p "$trash_directory"
 	 
 	
 #2> /dev/null #better than -p imo
@@ -54,7 +54,7 @@ options=$(getopt -l "help,list,empty::,size,recover:,dryrun" -o "hl:e::sr:" -a -
 #getopt :: optional param, : required. Empty specific file, empty all, dryrun.
 eval set -- "$options"
 
-while true; do
+while [[ $# -gt 0 ]]; do
 	case "$1" in
 		-h|--help)
 			showUsage
@@ -64,7 +64,7 @@ while true; do
 			;;
 		-l|--list)
 			echo "List option selected."
-			ls -R -a ../.TRASH/
+			ls -R -a ~/.TRASH/
 			shift
 			;;
 		-e|--empty)
@@ -72,14 +72,14 @@ while true; do
 			case "$2" in
 				"")
 					echo "No argument provided for --empty."
-					rm -r ./.TRASH/
+					rm -r ~/.TRASH/
 					shift 2
 					;;
 				*)
 					echo "Argument for --empty: $2"
 					#check for internal --dryrun flag
 					if [[ $* == *"--dryrun"* ]] || [[ $* == *"-dryrun"* ]] || [[ $* == *"-d"* ]]; then
-						ls -R -a ../.TRASH/
+						ls -R -a ~/.TRASH/
 						#list all files that empty would delete
 					fi
 					shift 2
@@ -93,7 +93,7 @@ while true; do
 		;;
 		-r|--recover)
 			echo "Recover option selected of file: $2"
-			ls  "$2" ../.TRASH/ 2> /dev/null
+			ls  "$2" ~/.TRASH/ 2> /dev/null
 			#suppress warning, might want it
 			#error if it doesn't exist
 			#do something (actual recovery)
