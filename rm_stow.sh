@@ -118,9 +118,9 @@ done
 
 
 # Print a message if the script is called without any arguments
-#if [ $# -eq 0 ]; then
- #   echo "No arguments provided. Please see usage below:"
-  #  showUsage
-   # exit 1
-#fi
+if [ $# -eq 0 ]; then
+	echo "No arguments provided. See --help for usage:"
+	#showUsage
+	exit 1
+fi
 
