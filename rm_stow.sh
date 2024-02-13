@@ -79,17 +79,7 @@ while [[ $# -gt 0 ]]; do
                 if [[ "$*" == " -- " ]]; then
                     shift # Skip the -- added by getopt
                 fi
-					
-				    for file in "$@"; do
-					      ls "$trash_directory/$file"
-					      rm "$trash_directory/$file"
-				        file_to_delete="$*"
-            done
-                #result_string=$(echo "$original_string" | sed 's/ -- / /')
- #              echo "Debug: File to delete: $file_to_delete"
- #               echo "Removing file from trash: $file_to_delete"
 
-                #echo "File: $file_to_delete removed from trash successfully."
                 exit 0
 
             fi
@@ -112,7 +102,7 @@ while [[ $# -gt 0 ]]; do
             recovered_file_path="$trash_directory/$file_to_recover"
             if [ -e "$recovered_file_path" ]; then
                 echo "Recovering file: $file_to_recover"
-                mv "$recovered_file_path"  ~/.
+                mv "$recovered_file_path" ~/.
                 echo "File recovered successfully."
                 exit 0
             else
@@ -128,7 +118,20 @@ while [[ $# -gt 0 ]]; do
     --)
         shift
         for file in "$@"; do
-            stowFile "$file"
+            file_in_trash="$trash_directory/$file"
+            if [ -e "$file_in_trash" ]; then
+                # File exists in trash, delete it
+                echo "Deleting file from trash: $file"
+                rm "$file_in_trash"
+                echo "File deleted from trash successfully."
+            else
+                # File doesn't exist in trash, move it to the trash
+                if [ -e "$file" ]; then
+                    echo "Moving file to trash: $file"
+                    mv "$file" "$trash_directory/"
+                    echo "File moved to trash successfully."
+                fi
+            fi
         done
         break
         ;;
