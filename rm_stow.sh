@@ -2,10 +2,10 @@
 
 
 #To Do: Add single file deletion from ~/TRASH if user combined remove + filename
-
+trash_directory="$HOME/.TRASH"
 
 showUsage() {
-
+	
 
     echo -e "Usage: rm_stow\n"
     echo "Options:"
@@ -27,7 +27,6 @@ showUsage() {
 
 createTrashFolder(){
 	#system("mkdir ~/TRASH"); This is required for non-bash languages like C/CPP/Java
-    trash_directory="$HOME/.TRASH"
     mkdir -p "$trash_directory"
 	 
 	
@@ -44,9 +43,10 @@ stowFile(){
 		echo "Moving file to trash: $file_to_delete"
   # Perform the actual move to trash here (you might need to adjust this)
 		mv "$file_to_delete" ~/.TRASH/
+		ls -a trash_directory #debugging
 		echo "File moved to trash successfully."
 		exit 0
-fi
+	fi
 }
 
 
