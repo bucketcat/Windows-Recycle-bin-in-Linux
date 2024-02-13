@@ -80,11 +80,11 @@ while [[ $# -gt 0 ]]; do
                     shift # Skip the -- added by getopt
                 fi
 					
-				for file in "$@"; do
-					ls "$trash_directory/$file"
-					rm "$trash_directory/$file"
-				file_to_delete="$*"
-
+				    for file in "$@"; do
+					      ls "$trash_directory/$file"
+					      rm "$trash_directory/$file"
+				        file_to_delete="$*"
+            done
                 #result_string=$(echo "$original_string" | sed 's/ -- / /')
  #              echo "Debug: File to delete: $file_to_delete"
  #               echo "Removing file from trash: $file_to_delete"
