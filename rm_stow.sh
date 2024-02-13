@@ -1,7 +1,6 @@
 #!/bin/bash
 
-#To Do: Solve single file removal and getopt and test file recovery. Maybe log and save original path rather than \n
-# dumping it in home.
+#To Do:  Maybe log and save original path rather than dumping it in home.
 trash_directory="$HOME/.TRASH"
 
 showUsage() {
@@ -95,20 +94,21 @@ while [[ $# -gt 0 ]]; do
         ;;
     -r | --recover)
         echo "Recover option selected of file: $2"
-        ls "$2" ~/.TRASH/ 2>/dev/null
-        shift
-        if [ "$#" -eq 1 ]; then
-            file_to_recover="$1"
-            recovered_file_path="$trash_directory/$file_to_recover"
-            if [ -e "$recovered_file_path" ]; then
-                echo "Recovering file: $file_to_recover"
-                mv "$recovered_file_path" ~/.
-                echo "File recovered successfully."
-                exit 0
-            else
-                echo "Error: File not found in the trash directory!"
-                exit 1
-            fi
+
+        echo "Recover option selected for file: $2"
+        ls "$trash_directory/$2" 2>/dev/null
+        recovered_file_path="$trash_directory/$2"
+        echo "Checking existence of: $recovered_file_path"
+        if [ -e "$recovered_file_path" ]; then
+            echo "Recovering file: $2"
+            echo "Destination path: $HOME/"
+            mv -v "$recovered_file_path" "$HOME/"
+            echo "File recovered successfully."
+            exit 0
+        else
+            echo "Error: File not found in the trash directory!"
+            exit 1
+
         #suppress warning, might want it
         #error if it doesn't exist
         #do something (actual recovery)
@@ -129,7 +129,7 @@ while [[ $# -gt 0 ]]; do
                 if [ -e "$file" ]; then
                     echo "Moving file to trash: $file"
                     mv "$file" "$trash_directory/"
-                    echo "File moved to trash successfully."
+                    echo "$file moved to trash successfully."
                 fi
             fi
         done
