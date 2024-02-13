@@ -29,8 +29,6 @@ createTrashFolder(){
 	#system("mkdir ~/TRASH"); This is required for non-bash languages like C/CPP/Java
     mkdir -p "$trash_directory"
 	 
-	
-#2> /dev/null #better than -p imo
 }
 
 
@@ -50,7 +48,7 @@ stowFile(){
 }
 
 
-options=$(getopt -l "help,list,empty::,size,recover:,dryrun" -o "hl:e::sr:" -a -- "$@")
+options=$(getopt -l "help,list,empty::,size,recover:,dryrun" -o "hle::sr:d" -a -- "$@")
 #getopt :: optional param, : required. Empty specific file, empty all, dryrun.
 eval set -- "$options"
 
@@ -118,7 +116,7 @@ done
 
 
 # Print a message if the script is called without any arguments
-if [ $# -eq 0 ]; then
+if [[ ! $1 =~ ^- ]] && [[ -f $1 ]]; then
 	echo "No arguments provided. See --help for usage:"
 	#showUsage
 	exit 1
