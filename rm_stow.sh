@@ -79,18 +79,17 @@ while [[ $# -gt 0 ]]; do
                 if [[ "$*" == " -- " ]]; then
                     shift # Skip the -- added by getopt
                 fi
-                # handleFileDeletion "$@"
-                file_to_delete="$*"
-                #oh my god, have to do a regex lookbehind to remove the "-- " inserted by getopt in end of command. No clue why end of command is triggered when optional commands are specified...
-                echo "$*"
+					
+				for file in "$@"; do
+					ls "$trash_directory/$file"
+					rm "$trash_directory/$file"
+				file_to_delete="$*"
 
                 #result_string=$(echo "$original_string" | sed 's/ -- / /')
+ #              echo "Debug: File to delete: $file_to_delete"
+ #               echo "Removing file from trash: $file_to_delete"
 
-                nukeFile "$file_to_delete"
-                echo "Debug: File to delete: $file_to_delete"
-                echo "Removing file from trash: $file_to_delete"
-
-                echo "File: $file_to_delete removed from trash successfully."
+                #echo "File: $file_to_delete removed from trash successfully."
                 exit 0
 
             fi
