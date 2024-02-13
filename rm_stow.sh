@@ -41,7 +41,6 @@ stowFile(){
 		echo "Moving file to trash: $file_to_delete"
   # Perform the actual move to trash here (you might need to adjust this)
 		mv "$file_to_delete" ~/.TRASH/
-		ls -a trash_directory #debugging
 		echo "File moved to trash successfully."
 		exit 0
 	fi
@@ -99,15 +98,15 @@ while [[ $# -gt 0 ]]; do
 			;;
 		--)
 			shift
+			for file in "$@"; do
+                stowFile "$file"
+            done
 			break
 			;;
 		*)            
-			if [[ ! $1 == -* ]]; then
-                stowFile "$1"
-			else	
-				echo "Error! Unrecognised argument or invalid file!"
-				exit 1
-			fi	
+	
+			echo "Error! Unrecognised argument or invalid file!"
+			exit 1	
 			break
 			;;				  
 	esac
