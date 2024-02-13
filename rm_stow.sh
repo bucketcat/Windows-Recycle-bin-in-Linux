@@ -17,8 +17,8 @@ showUsage() {
     echo -e "  rm_stow.sh --recover regrahts.txt"
     echo -e "  rm_stow.sh --empty --dryrun"
     echo -e "                    To delete a file, ONLY include the name of the file and no other arguments or options."
-    echo -e "  rm_stow.sh bye.txt"
-    
+    echo -e "  rm_stow.sh bye.txt \n \n"
+
     echo -e "\e[1;31mWarning!\e[0m To delete a specific file from trash, only include the file name as a single parameter. This assumes that it exists in \e[1;36m~/.TRASH/\e[0m."
     echo -e "Otherwise, it will move it to \e[1;36m~/.TRASH/\e[0m."
     echo -e "\e[1;31mWarning:\e[0m There is no prompt for this and this is a \e[1;31mdestructive action!\e[0m"
